@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 
 const API_URL = "https://dummyjson.com/";
+const CART_NUMBER = 2;
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [clientCard, setClientCard] = useState([]);
+
 
   useEffect(() => {
     fetch(`${API_URL}products`)
@@ -13,17 +16,33 @@ function App() {
       });
   }, []);
 
-  const addToCart = (productId) => {
-    console.log("Add to cart", productId);
-    // Add to cart request: https://dummyjson.com/docs/carts#update
+  const addToCart = (product) => {
+    const newClientCard = [...clientCard];
+    const productInCart = newClientCard.find(
+      (item) => item.id === product.id
+    );
+
+    if (!productInCart) {
+      newClientCard.push({ ...product, quantity: 1 });
+      alert("Toode lisati ostukorvi");
+      fetch(`${API_URL}carts/${CART_NUMBER}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ products: newClientCard }),
+      });
+    }
+    setClientCard(newClientCard);
   };
 
-  return (
 
-    <section className="text-gray-600 body-font">
-      <div className="container px-5 py-24 mx-auto">
-        <div className="flex flex-wrap -m-4">
-          {products && products.map((product) => (
+
+  return (
+    <section className="text-gray-600 body-font" >
+      <div className="container mx-auto px-5 py-24">
+        <div className="flex flex-wrap">
+          {clientCard && products && products.map((product) => (
 
 
             <div key={product.id} className="xl:w-1/4 lg:w-1/3 md:w-1/2 p-4 w-full mb-10 mt-4 odd:bg-gray-100">
@@ -82,17 +101,29 @@ function App() {
                   {product.description}
                 </p>
                 <p>
-                  {product.stock > 0 ? (
-                    <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                      onClick={() => addToCart(product.id)}
-                    >
-                      Lisa ostukorvi
-                    </button>
-                  ) : (
-                    <span className="text-red-500">Out of stock</span>
-                  )}
+                  {
+                    clientCard.find((item) => item.id === product.id) ? (
+                      <button
+                        className="text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded text-sm cursor-not-allowed"
+                        disabled
+                      >
+                        Toode on ostukorvis
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => addToCart(product)}
+                        className="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-sm"
+                      >
+                        Lisa ostukorvi
+                      </button>
+                    )
+
+                  }
                 </p>
+
+
+
+
 
 
               </div>
@@ -112,7 +143,8 @@ function App() {
 
         </div>
       </div>
-    </section>
+    </section >
+
   );
 }
 
