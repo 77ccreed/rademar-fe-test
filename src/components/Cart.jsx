@@ -3,7 +3,7 @@ import React from 'react'
 const Cart = ({ product, addToCart, clientCard }) => {
 
   return (
-    <div className="xl:w-1/4 lg:w-1/3 md:w-1/2 p-4 w-full mb-10 mt-4 odd:bg-gray-100">
+    <div className="xl:w-1/4 lg:w-1/3 md:w-1/2 p-4 max-w-md m-auto mb-6 mt-4 odd:bg-gray-100">
       <a className="block relative h-48 rounded overflow-hidden">
         <img
           alt="ecommerce"
@@ -24,7 +24,7 @@ const Cart = ({ product, addToCart, clientCard }) => {
         </div>
 
         <div className='col-span-1 row-span-2 flex flex-col justify-center'>
-          <p className="text-gray-700 text-base font-bold text-right">
+          <p className="text-gray-700 text-lg font-bold text-right leading-none">
             {product.price.toFixed(2)} €
           </p>
           <p className="text-gray-500 text-xs text-right">
@@ -46,10 +46,10 @@ const Cart = ({ product, addToCart, clientCard }) => {
           </p>
         </h4>
 
-        <p className="mt-8 text-gray-500 text-xs tracking-widest title-font mb-4 h-10">
+        <p className="mt-4 text-gray-500 text-xs tracking-widest title-font mb-4 h-10">
           {product.description}
         </p>
-        <p>
+        <p className='mt-6'>
           {
             clientCard.find((item) => item.id === product.id) ? (
               <button
