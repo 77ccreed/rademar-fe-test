@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-
 import Cart from './Cart'
+
 const API_URL = "https://dummyjson.com/";
 const CART_NUMBER = 2;
+
 
 const CartGrid = () => {
   const [products, setProducts] = useState([]);
@@ -17,6 +18,17 @@ const CartGrid = () => {
       });
   }, []);
 
+  useEffect(() => {
+    fetch(`${API_URL}carts/${CART_NUMBER}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setClientCard(data.products);
+      });
+  }, []);
+
+
+
   const addToCart = (product) => {
     const newClientCard = [...clientCard];
     const productInCart = newClientCard.find(
@@ -25,20 +37,24 @@ const CartGrid = () => {
 
     if (!productInCart) {
       newClientCard.push({ ...product, quantity: 1 });
-      alert("Toode lisati ostukorvi");
+      alert(`${product.title} lisati ostukorvi`);
       fetch(`${API_URL}carts/${CART_NUMBER}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ products: newClientCard }),
-      });
+        method: 'PUT', /* or PATCH */
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          products: newClientCard,
+        })
+      })
+        .then(res => res.json())
+        .then((data) => {
+          console.log(data);
+        });
     }
     setClientCard(newClientCard);
   };
 
   return (
-    <div className="container mx-auto px-5 py-24">
+    <div className="container px-5 py-24">
       <div className="flex flex-wrap">
         {clientCard && products && products.map((product) => (
           <Cart
