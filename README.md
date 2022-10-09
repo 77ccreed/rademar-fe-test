@@ -13,23 +13,23 @@ Testülesannet võib lahendada GIT-is näiteks forkides või saates koodi emaili
 
 ## Ülesandepüstitus
 
-- Kuvada tooted viisakal kujul välja. Kujundust võib teha näiteks [Rademari epoe](https://www.rademar.ee/tooted/naised) tootelistingu lehe järgi.
+- Kuvada tooted viisakal kujul välja. Kujundust võib teha näiteks [Rademari epoe](https://www.rademar.ee/tooted/naised) tootelistingu järgi.
 
-- Iga toote juures kuvada “Lisa ostukorvi” nupp millele vajutades tehakse päring ning eduka päringu puhul läheb nupp “disabled” staatusesse. Nupu võib asendada ka ntks kirjaga “toode lisatud ostukorvi”.
+- Iga toote juures kuvada “Lisa ostukorvi” nupp, millele vajutades tehakse päring ning eduka päringu puhul läheb nupp “disabled” staatusesse. Nupu võib asendada ka ntks kirjaga “toode lisatud ostukorvi”.
 
 - Vaade peab olema skaleeruv vastavalt ekraani suurusele.
 
-### Mis on tehtud
+## Lahenduse kirjeldus
 
-- [x] Rademari epoe tootelistingu lehe järgi tehtud kujundus.
+Esmasel laadimisel laetakse koos toodetega kohe ka ostukorvi sisu. Vastavalt laetud andmetele kuvatakse tootekaardid koos nupuga “Lisa ostukorvi” või “Toode on ostukorvis”.
 
-- [x] Iga toote juures kuvada “Lisa ostukorvi” nupp millele vajutades tehakse päring. Eduka päringu puhul läheb nupp “disabled” staatusesse.
+Kui kasutaja vajutab nupule “Lisa ostukorvi”, siis tehakse päring ostukorvi lisamiseks. Päringu õnnestumisel kuvatakse teade ja nupp tekstiga “Toode on ostukorvis”, mis on “disabled” staatuses. Ostukorvi sisu uuendatakse.
 
-- [x] Skaleeruv vaade vastavalt ekraani suurusele.
+Kujundus on Rademari e-poest inspireeritud, kasutatud Taliwindi. Skaleeruv vastavalt ekraani suurusele, kasutatav kõigis seadmetes.
 
-### Lahenduse kirjeldus
+Tootekaart ja toodete nimekiri on komponentidena eraldi kaustas.
 
-#### Kasulikud lingid
+### Kasulikud lingid
 
 - [DummyJSON]( https://dummyjson.com/)
 - [Tailwind Cheatsheet]( https://tailwindcomponents.com/cheatsheet/)
