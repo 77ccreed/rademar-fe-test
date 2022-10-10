@@ -23,7 +23,7 @@ Testülesannet võib lahendada GIT-is näiteks forkides või saates koodi emaili
 
 Esmasel laadimisel laetakse koos toodetega kohe ka ostukorvi sisu. Vastavalt laetud andmetele kuvatakse tootekaardid koos nupuga “Lisa ostukorvi” või “Toode on ostukorvis”.
 
-Kui kasutaja vajutab nupule “Lisa ostukorvi”, siis tehakse päring ostukorvi lisamiseks. Päringu õnnestumisel kuvatakse teade ja nupp tekstiga “Toode on ostukorvis”, mis on “disabled” staatuses. Ostukorvi sisu uuendatakse.
+Kui kasutaja vajutab nupule “Lisa ostukorvi” siis tehakse päring toote ostukorvi lisamiseks. Päringu õnnestumisel kuvatakse teade ja nupp tekstiga “Toode on ostukorvis”, mis on “disabled” staatuses. Ostukorvi sisu uuendatakse.
 
 Kujundus on Rademari e-poest inspireeritud, kasutatud Taliwindi. Skaleeruv vastavalt ekraani suurusele, kasutatav kõigis seadmetes.
 
